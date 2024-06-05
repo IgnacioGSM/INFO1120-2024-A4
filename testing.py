@@ -69,6 +69,7 @@ else:
             break
         print(f"El {columnas_seleccion_multiple[columna_elegida]} ingresado no existe, ingrese uno valido")
     subDF = filtro(df,columnas_seleccion_multiple[columna_elegida],condicion)
+    subDF.reset_index(inplace=True,drop=True)
     print(subDF)
 
 # hacer un set con los elementos
