@@ -48,29 +48,24 @@ if seleccion_numero_documentos == 1:
     print()
     while True:
         condicion = input("")
-        if not subDF[subDF[columnas_seleccion_unica[columna_elegida]] == condicion].empty:
+        if not subDF[subDF[columnas_seleccion_unica[columna_elegida]] == condicion].empty or :
             break
         print(f"El {columnas_seleccion_unica[columna_elegida]} ingresado no existe, ingrese uno valido")
     subDF = filtro(df,columnas_seleccion_unica[columna_elegida],condicion)
     print(subDF)
 
-#---------------------------------------------------------------------------------------------------------------------
+
 else:
     print("Escoja un criterio por el que buscar:")
     for key,value in columnas_seleccion_multiple.items():
         print(f"{key}- {value}")
     columna_elegida = seleccion_opciones(len(columnas_seleccion_multiple))
-    subDF = filtro(df,columnas_seleccion_multiple[columna_elegida])
-    print(subDF)
+    opciones = sorted(list(set(df[columnas_seleccion_multiple[columna_elegida]])))
+    for i in range(len(opciones)):
+        print(f"{i+1}- {opciones[i]}")
     print()
-    while True:
-        condicion = input("")
-        if not subDF[subDF[columnas_seleccion_multiple[columna_elegida]] == condicion].empty:
-            break
-        print(f"El {columnas_seleccion_multiple[columna_elegida]} ingresado no existe, ingrese uno valido")
+    condicion = seleccion_opciones(len(opciones))
+    condicion = opciones[condicion-1]
     subDF = filtro(df,columnas_seleccion_multiple[columna_elegida],condicion)
     subDF.reset_index(inplace=True,drop=True)
     print(subDF)
-
-# hacer un set con los elementos
-#----------------------------------------------------------------------------------------------------------------------
