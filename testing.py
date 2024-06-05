@@ -47,11 +47,12 @@ if seleccion_numero_documentos == 1:
     print(subDF)
     print()
     while True:
-        condicion = input("")
-        if not subDF[subDF[columnas_seleccion_unica[columna_elegida]] == condicion].empty or :
+        condicion = int(input("Seleccione una fila: "))
+        if condicion > 0 and condicion < len(subDF):
             break
-        print(f"El {columnas_seleccion_unica[columna_elegida]} ingresado no existe, ingrese uno valido")
-    subDF = filtro(df,columnas_seleccion_unica[columna_elegida],condicion)
+        print("ERRORRR")
+    
+    subDF = df.iloc[condicion]
     print(subDF)
 
 
