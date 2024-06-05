@@ -23,6 +23,12 @@ def seleccion_opciones(x, mensaje="Elige una opcion: "):
                 return entrada
             else: print("No hay una opción con ese número, intente otro")
 
+def entrada_numero(mensaje="Ingrese un numero: "):
+    while True:
+        try: entrada = int(input(mensaje))
+        except ValueError: print("Error, asegurese de ingresar solo numeros enteros")
+        else: return entrada
+
 
 df = get_database("db_personas.db")
 
@@ -47,7 +53,7 @@ if seleccion_numero_documentos == 1:
     print(subDF)
     print()
     while True:
-        condicion = int(input("Seleccione una fila: "))
+        condicion = entrada_numero("Seleccione una fila: ")
         if condicion > 0 and condicion < len(subDF):
             break
         print("ERRORRR")
