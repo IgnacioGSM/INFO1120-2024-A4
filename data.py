@@ -1,27 +1,26 @@
 import pandas as pd
-from sqlite3 import connect
-
-def get_database(file):
-    conexion = connect(file)
-
-    db = pd.read_sql("SELECT * from Salarios INNER JOIN personas ON Salarios.id_salarios = personas.id_rol",conexion)
-    return db
-
-def filtro(dataframe="df",columna="rut", condicion="11316802-1"):
-    dato = dataframe[dataframe[columna] == condicion]
-    return dato
+from word_gen import example_contract
 
 
 
-df = get_database("db_personas.db")
+
+def singular_data_to_contract(df: pd.DataFrame, index_row:int):
+    sub_df = df.iloc[index_row]
+    date = sub_df['Fecha']
+    rol = sub_df['Rol']
+    address = sub_df['Residencia']
+    rut = sub_df['RUT']
+    full_name = sub_df['nombre_completo']
+    nationality = sub_df['Nacionalidad']
+    birth_date = sub_df['Fecha de nacimiento']
+    profession = sub_df['Profesion']
+    salary = sub_df['Sueldo']
+    example_contract(date, rol, address, rut, full_name, nationality, birth_date, profession, str(salary))
+
+    
 
 
-hola = filtro(df,"rut","1518146-K")
 
-multiples = filtro(df,"nacionalidad","Chilena")
 
-for i in multiples.index.values:
-    print(df.iloc[i])
-    print()
 
-#print(df.iloc[hola.index.values[0]])     # devuelve los datos de una sola fila
+
