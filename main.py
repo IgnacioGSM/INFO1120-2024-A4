@@ -40,12 +40,7 @@ if seleccion_numero_documentos == 1:
     subDF = filtro(df,columnas_seleccion_unica[columna_elegida])
     print(subDF)
     print()
-    while True:
-        condicion = ent.entrada_numero("Seleccione una fila: ")
-        if condicion > 0 and condicion < len(subDF):
-            break
-        print("ERRORRR")
-    
+    condicion = ent.entrada_indice(0,len(subDF),"Ingrese el indice del dato deseado: ")
     subDF = df[df.index == condicion]
     print(subDF)
     subDF.reset_index(inplace=True)

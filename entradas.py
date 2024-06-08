@@ -13,7 +13,7 @@ def seleccion_opciones(x, mensaje="Elige una opcion: "):
                 return entrada
             else: print("No hay una opción con ese número, intente otro")
 
-def entrada_indice(inferior=0,superior=1, mensaje="hola"):
+def entrada_indice(inferior=0,superior=1, mensaje="Ingrese un indice: "):
     while True:
         x = entrada_numero(mensaje)
         if x < superior and x >= inferior:
