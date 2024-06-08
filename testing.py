@@ -1,6 +1,11 @@
 import pandas as pd
+from docx import Document
+from docx.shared import  Pt,Cm,Mm
 from sqlite3 import connect
+
 import entradas as ent
+from word_gen import example_contract
+from data import singular_data_to_contract
 
 def get_database(file):
     conexion = connect(file)
@@ -44,8 +49,10 @@ if seleccion_numero_documentos == 1:
             break
         print("ERRORRR")
     
-    subDF = df.iloc[condicion]
+    subDF = df[df.index == condicion]
     print(subDF)
+    subDF.reset_index(inplace=True)
+    #singular_data_to_contract(subDF,0)
 
 
 else:
