@@ -1,10 +1,7 @@
 import pandas as pd
-from docx import Document
-from docx.shared import  Pt,Cm,Mm
 from sqlite3 import connect
 
 import entradas as ent
-from word_gen import example_contract
 from data import singular_data_to_contract
 
 def get_database(file):
