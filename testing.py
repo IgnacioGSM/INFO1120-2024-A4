@@ -52,7 +52,7 @@ if seleccion_numero_documentos == 1:
     subDF = df[df.index == condicion]
     print(subDF)
     subDF.reset_index(inplace=True)
-    #singular_data_to_contract(subDF,0)
+    singular_data_to_contract(subDF,0)
 
 
 else:
