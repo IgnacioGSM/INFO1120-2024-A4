@@ -72,7 +72,8 @@ else:
     print("\nEscoja el rango: ")
     inf = ent.entrada_indice(0,len(subDF),"Ingrese el limite inferior: ")
     sup = ent.entrada_indice(inf,len(subDF),"Ingrese el limite superior: ")
-    #print(subDF.iloc[inf:sup+1])
     subDF = subDF.iloc[inf:sup+1]
     subDF.reset_index(inplace=True)
     print(subDF)
+    for i in range(len(subDF)):
+        singular_data_to_contract(subDF,i)
