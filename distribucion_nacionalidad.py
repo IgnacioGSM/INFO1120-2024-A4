@@ -8,3 +8,4 @@ nacionalidades = sorted(list(set(df["nacionalidad"])))
 cantidad = []
 for nac in nacionalidades:
     cantidad.append(len(df[df["nacionalidad"] == nac]))
+print(cantidad)
