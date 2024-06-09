@@ -8,4 +8,7 @@ profesiones = sorted(list(set(df["profesion"])))
 distribucion = []
 for pro in profesiones:
     distribucion.append(len(df[df["profesion"] == pro]))
-print(distribucion)
+
+plt.figure(figsize=(10,5))
+plt.pie(distribucion, labels=profesiones, autopct="%1.1f%%", textprops={"size" : "small"},radius=1.25)
+plt.show()
