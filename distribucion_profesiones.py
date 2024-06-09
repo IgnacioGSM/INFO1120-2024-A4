@@ -11,5 +11,5 @@ for pro in profesiones:
 
 plt.figure(figsize=(10,5))
 plt.pie(distribucion, labels=profesiones, autopct="%1.1f%%", textprops={"size" : "small"},radius=1.25)
-plt.title("Distribución de profesiones")
+plt.title("Distribución de profesiones\n")
 plt.show()
