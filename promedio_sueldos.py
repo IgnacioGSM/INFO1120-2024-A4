@@ -3,4 +3,6 @@ from data import get_database, filtro
 
 df = get_database("db_personas.db")
 
-print(df)
+profesiones = sorted(list(set(df["profesion"])))
+
+print(profesiones)
