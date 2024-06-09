@@ -12,7 +12,10 @@ for pro in profesiones:
 
 plt.figure(figsize=(12,5))
 plt.bar(profesiones,sueldo_promedio, 0.4)
+plt.title("Promedio de sueldo por profesión")
 plt.ylabel("Sueldo promedio (Millones CLP)")
 plt.xticks(rotation=45)
+plt.yticks(range(0,2250000,250000))
 plt.subplots_adjust(bottom=0.45)
+plt.grid(True)
 plt.show()
