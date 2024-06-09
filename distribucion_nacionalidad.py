@@ -8,4 +8,11 @@ nacionalidades = sorted(list(set(df["nacionalidad"])))
 cantidad = []
 for nac in nacionalidades:
     cantidad.append(len(df[df["nacionalidad"] == nac]))
-print(cantidad)
+
+
+plt.bar(nacionalidades,cantidad)
+plt.title("Conteo de profesionales por nacionalidad")
+plt.grid(True)
+plt.ylabel("Cantidad de profesionales")
+plt.xlabel("Nacionalidades")
+plt.show()
