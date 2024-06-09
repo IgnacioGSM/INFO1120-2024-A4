@@ -1,6 +1,3 @@
-import pandas as pd
-from sqlite3 import connect
-
 import entradas as ent
 from data import *
 
