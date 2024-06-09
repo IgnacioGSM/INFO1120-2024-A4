@@ -6,9 +6,9 @@ Este proyecto consiste en generar de forma automática contratos con una plantil
 Para ejecutar este proyecto se necesita tener instalado:
 
 - Python
--- pandas
--- python-docx
--- matplotlib
+- libreria pandas
+- libreria python-docx
+- libreria matplotlib
 - Sqlite3
 
 ## Ejecución
