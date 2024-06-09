@@ -1,4 +1,4 @@
-import matplotlib.pyplot as mpl
+import matplotlib.pyplot as plt
 from data import get_database
 from numpy import mean
 
@@ -10,4 +10,6 @@ sueldo_promedio = []
 for pro in profesiones:
     sueldo_promedio.append(mean(df[df["profesion"] == pro]["Sueldo"]))
 
-print(sueldo_promedio)
+plt.bar(profesiones,sueldo_promedio)
+plt.ylabel("Sueldo promedio (Millones CLP)")
+plt.show()
