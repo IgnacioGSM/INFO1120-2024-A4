@@ -10,7 +10,8 @@ columnas_seleccion_unica = {
 }
 columnas_seleccion_multiple = {
     1 : "profesion",
-    2 : "nacionalidad"
+    2 : "nacionalidad",
+    3 : "Rol"
 }
 
 print("1- Un solo documento\n2- Multiples documentos")
