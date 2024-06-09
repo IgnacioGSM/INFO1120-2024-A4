@@ -2,20 +2,7 @@ import pandas as pd
 from sqlite3 import connect
 
 import entradas as ent
-from data import singular_data_to_contract
-
-def get_database(file):
-    conexion = connect(file)
-
-    db = pd.read_sql("SELECT * from Salarios INNER JOIN personas ON Salarios.id_salarios = personas.id_rol",conexion)
-    return db
-
-def filtro(dataframe="df",columna="rut", condicion=False):
-    if condicion:
-        subDF = dataframe[dataframe[columna] == condicion]
-    else:
-        subDF = dataframe[[columna]]
-    return subDF
+from data import *
 
 
 df = get_database("db_personas.db")
