@@ -17,7 +17,7 @@ def main_menu():
     }
     for key,value in menu.items():
         print(f"{key}- {value}")
-    seleccion = seleccion_opciones(3)
+    seleccion = seleccion_opciones(4)
     if seleccion == 4:
         return
     else:
@@ -100,17 +100,19 @@ def graficos():
     print()
     menu = {
         1 : "Gráfico de barras, promedio de los sueldos para cada profesión",
-        2 : "Volver al menú",
-        3 : "Salir del programa"
+        2 : "Grafico de tarta, distribución de profesionales por profesión",
+        3 : "Volver al menú",
+        4 : "Salir del programa"
     }
     acciones = {
         1 : barras_promedio_sueldos,
-        2 : main_menu
+        2 : tarta_profesiones,
+        3 : main_menu
     }
     for key,value in menu.items():
         print(f"{key}- {value}")
-    seleccion = seleccion_opciones(3)
-    if seleccion == 3:
+    seleccion = seleccion_opciones(4)
+    if seleccion == 4:
         return
     else:
         acciones[seleccion]()
@@ -155,6 +157,22 @@ def barras_promedio_sueldos():
     plt.show()
     
     menu_post_grafico(barras_promedio_sueldos)
+
+
+def tarta_profesiones():
+    print()
+    profesiones = sorted(list(set(df["profesion"])))
+
+    distribucion = []
+    for pro in profesiones:
+        distribucion.append(len(df[df["profesion"] == pro]))
+
+    plt.figure(figsize=(10,5))
+    plt.pie(distribucion, labels=profesiones, autopct="%1.1f%%", textprops={"size" : "small"},radius=1.25)
+    plt.title("Distribución de profesiones\n")
+    plt.show()
+
+    menu_post_grafico(tarta_profesiones)
 
 
 df = get_database("db_personas.db")
