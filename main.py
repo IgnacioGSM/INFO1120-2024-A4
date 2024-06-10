@@ -91,6 +91,11 @@ def seleccion_multiple():
     elif regreso == 2:
         return
 
+
+
+
+
+
 def graficos():
     print()
     menu = {
@@ -110,6 +115,27 @@ def graficos():
     else:
         acciones[seleccion]()
 
+def menu_post_grafico(grafico):
+    menu = {
+        1 : "Mostrar gráfico otra vez",
+        2 : "Volver a la selección de gráficos",
+        3 : "Volver al menú inicial",
+        4 : "Salir"
+    }
+    acciones = {
+        1 : grafico,
+        2 : graficos,
+        3 : main_menu
+    }
+    for key,value in menu.items():
+        print(f"{key}- {value}")
+    seleccion = seleccion_opciones(4)
+    if seleccion == 4:
+        return
+    else:
+        acciones[seleccion]()
+
+
 def barras_promedio_sueldos(): 
     print()
     profesiones = sorted(list(set(df["profesion"])))
@@ -128,24 +154,7 @@ def barras_promedio_sueldos():
     plt.grid(True)
     plt.show()
     
-    menu = {
-        1 : "Mostrar gráfico otra vez",
-        2 : "Volver a la selección de gráficos",
-        3 : "Volver al menú inicial",
-        4 : "Salir"
-    }
-    acciones = {
-        1 : barras_promedio_sueldos,
-        2 : graficos,
-        3 : main_menu
-    }
-    for key,value in menu.items():
-        print(f"{key}- {value}")
-    seleccion = seleccion_opciones(4)
-    if seleccion == 4:
-        return
-    else:
-        acciones[seleccion]()
+    menu_post_grafico(barras_promedio_sueldos)
 
 
 df = get_database("db_personas.db")
