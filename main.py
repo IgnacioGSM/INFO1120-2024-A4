@@ -15,7 +15,10 @@ def main_menu():
     for key,value in menu.items():
         print(f"{key}- {value}")
     seleccion = seleccion_opciones(3)
-    acciones[seleccion]()
+    if seleccion == 3:
+        return
+    else:
+        acciones[seleccion]()
     
     
 def seleccion_unica():
@@ -23,17 +26,34 @@ def seleccion_unica():
     1 : "rut",
     2 : "nombre_completo"
     }
-    print("uwu")
+    print("Escoja un criterio por el que buscar:")
+    for key,value in columnas.items():
+        print(f"{key}- {value}")
+    columna_elegida = seleccion_opciones(len(columnas))
+    subDF = filtro(df,columnas[columna_elegida])
+    print(subDF)
+    print()
+    condicion = entrada_indice(0,len(subDF),"Ingrese el indice del dato deseado: ")
+    subDF = df[df.index == condicion]
+    print(subDF)
+    subDF.reset_index(inplace=True)
+    singular_data_to_contract(subDF,0)
+    print("Se ha generado el contrato, escriba 1 para volver al menú o escriba 2 para salir del programa")
+    regreso = seleccion_opciones(2,"")
+    if regreso == 1:
+        main_menu()
+    elif regreso == 2:
+        return
 
 
 def seleccion_multiple():
     pass
 
 
+df = get_database("db_personas.db")
 
 main_menu()
 
-df = get_database("db_personas.db")
 
 columnas_seleccion_unica = {
     1 : "rut",
@@ -48,7 +68,7 @@ columnas_seleccion_multiple = {
 print("1- Un solo documento\n2- Multiples documentos")
 seleccion_numero_documentos = seleccion_opciones(2)
 
-if seleccion_numero_documentos == 1:
+'''if seleccion_numero_documentos == 1:
     print("Escoja un criterio por el que buscar:")
     for key,value in columnas_seleccion_unica.items():
         print(f"{key}- {value}")
@@ -60,10 +80,10 @@ if seleccion_numero_documentos == 1:
     subDF = df[df.index == condicion]
     print(subDF)
     subDF.reset_index(inplace=True)
-    singular_data_to_contract(subDF,0)
+    singular_data_to_contract(subDF,0)'''
 
 
-else:
+'''else:
     print("Escoja un criterio por el que buscar:")
     for key,value in columnas_seleccion_multiple.items():
         print(f"{key}- {value}")
@@ -84,4 +104,4 @@ else:
     subDF.reset_index(inplace=True)
     print(subDF)
     for i in range(len(subDF)):
-        singular_data_to_contract(subDF,i)
+        singular_data_to_contract(subDF,i)'''
