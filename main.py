@@ -17,7 +17,7 @@ def main_menu():
     }
     for key,value in menu.items():
         print(f"{key}- {value}")
-    seleccion = seleccion_opciones(4)
+    seleccion = seleccion_opciones(len(menu))
     if seleccion == 4:
         return
     else:
@@ -101,18 +101,20 @@ def graficos():
     menu = {
         1 : "Gráfico de barras, promedio de los sueldos para cada profesión",
         2 : "Grafico de tarta, distribución de profesionales por profesión",
-        3 : "Volver al menú",
-        4 : "Salir del programa"
+        3 : "Gráfico de barras, distribución de profesionales por nacionalidad",
+        4 : "Volver al menú",
+        5 : "Salir del programa"
     }
     acciones = {
         1 : barras_promedio_sueldos,
         2 : tarta_profesiones,
-        3 : main_menu
+        3 : barras_distribucion_nacionalidades,
+        4 : main_menu
     }
     for key,value in menu.items():
         print(f"{key}- {value}")
-    seleccion = seleccion_opciones(4)
-    if seleccion == 4:
+    seleccion = seleccion_opciones(len(menu))
+    if seleccion == 5:
         return
     else:
         acciones[seleccion]()
@@ -173,6 +175,25 @@ def tarta_profesiones():
     plt.show()
 
     menu_post_grafico(tarta_profesiones)
+
+
+def barras_distribucion_nacionalidades():
+    print()
+    nacionalidades = sorted(list(set(df["nacionalidad"])))
+
+    cantidad = []
+    for nac in nacionalidades:
+        cantidad.append(len(df[df["nacionalidad"] == nac]))
+
+
+    plt.bar(nacionalidades,cantidad)
+    plt.title("Conteo de profesionales por nacionalidad")
+    plt.grid(True)
+    plt.ylabel("Cantidad de profesionales")
+    plt.xlabel("Nacionalidades")
+    plt.show()
+
+    menu_post_grafico(barras_distribucion_nacionalidades)
 
 
 df = get_database("db_personas.db")
