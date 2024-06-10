@@ -26,7 +26,8 @@ def seleccion_unica():
     1 : "rut",
     2 : "nombre_completo"
     }
-    print("Escoja un criterio por el que buscar:")
+
+    print("\nEscoja un criterio por el que buscar:")
     for key,value in columnas.items():
         print(f"{key}- {value}")
     columna_elegida = seleccion_opciones(len(columnas))
@@ -38,6 +39,7 @@ def seleccion_unica():
     print(subDF)
     subDF.reset_index(inplace=True)
     singular_data_to_contract(subDF,0)
+
     print("Se ha generado el contrato, escriba 1 para volver al menú o escriba 2 para salir del programa")
     regreso = seleccion_opciones(2,"")
     if regreso == 1:
@@ -47,7 +49,40 @@ def seleccion_unica():
 
 
 def seleccion_multiple():
-    pass
+    columnas = {
+    1 : "profesion",
+    2 : "nacionalidad",
+    3 : "Rol"
+    }
+
+    print("\nEscoja un criterio por el que buscar:")
+    for key,value in columnas.items():
+        print(f"{key}- {value}")
+    columna_elegida = seleccion_opciones(len(columnas))
+    opciones = sorted(list(set(df[columnas[columna_elegida]])))
+    for i in range(len(opciones)):
+        print(f"{i+1}- {opciones[i]}")
+    print()
+    condicion = seleccion_opciones(len(opciones))
+    condicion = opciones[condicion-1]
+    subDF = filtro(df,columnas[columna_elegida],condicion)
+    subDF.reset_index(inplace=True,drop=True)
+    print(subDF)
+    print("\nEscoja el rango: ")
+    inf = entrada_indice(0,len(subDF),"Ingrese el limite inferior: ")
+    sup = entrada_indice(inf,len(subDF),"Ingrese el limite superior: ")
+    subDF = subDF.iloc[inf:sup+1]
+    subDF.reset_index(inplace=True)
+    print(subDF)
+    for i in range(len(subDF)):
+        singular_data_to_contract(subDF,i)
+    
+    print("Se han generado los contratos, escriba 1 para volver al menú o escriba 2 para salir del programa")
+    regreso = seleccion_opciones(2,"")
+    if regreso == 1:
+        main_menu()
+    elif regreso == 2:
+        return
 
 
 df = get_database("db_personas.db")
