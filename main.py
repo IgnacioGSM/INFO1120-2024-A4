@@ -1,5 +1,7 @@
+import matplotlib.pyplot as plt
 from entradas import *
 from data import *
+from numpy import mean
 
 def main_menu():
     menu = {
@@ -32,6 +34,7 @@ def seleccion_unica():
     for key,value in columnas.items():
         print(f"{key}- {value}")
     columna_elegida = seleccion_opciones(len(columnas))
+    print()
     subDF = filtro(df,columnas[columna_elegida])
     print(subDF)
     print()
@@ -60,10 +63,13 @@ def seleccion_multiple():
     for key,value in columnas.items():
         print(f"{key}- {value}")
     columna_elegida = seleccion_opciones(len(columnas))
+    print()
+
     opciones = sorted(list(set(df[columnas[columna_elegida]])))
     for i in range(len(opciones)):
         print(f"{i+1}- {opciones[i]}")
     print()
+
     condicion = seleccion_opciones(len(opciones))
     condicion = opciones[condicion-1]
     subDF = filtro(df,columnas[columna_elegida],condicion)
@@ -86,7 +92,60 @@ def seleccion_multiple():
         return
 
 def graficos():
-    print("hola")
+    print()
+    menu = {
+        1 : "Gráfico de barras, promedio de los sueldos para cada profesión",
+        2 : "Volver al menú",
+        3 : "Salir del programa"
+    }
+    acciones = {
+        1 : barras_promedio_sueldos,
+        2 : main_menu
+    }
+    for key,value in menu.items():
+        print(f"{key}- {value}")
+    seleccion = seleccion_opciones(3)
+    if seleccion == 3:
+        return
+    else:
+        acciones[seleccion]()
+
+def barras_promedio_sueldos(): 
+    print()
+    profesiones = sorted(list(set(df["profesion"])))
+
+    sueldo_promedio = []
+    for pro in profesiones:
+        sueldo_promedio.append(mean(df[df["profesion"] == pro]["Sueldo"]))
+
+    plt.figure(figsize=(12,5))
+    plt.bar(profesiones,sueldo_promedio, 0.4)
+    plt.title("Promedio de sueldo por profesión")
+    plt.ylabel("Sueldo promedio (Millones CLP)")
+    plt.xticks(rotation=45)
+    plt.yticks(range(0,2250000,250000))
+    plt.subplots_adjust(bottom=0.45)
+    plt.grid(True)
+    plt.show()
+    
+    menu = {
+        1 : "Mostrar gráfico otra vez",
+        2 : "Volver a la selección de gráficos",
+        3 : "Volver al menú inicial",
+        4 : "Salir"
+    }
+    acciones = {
+        1 : barras_promedio_sueldos,
+        2 : graficos,
+        3 : main_menu
+    }
+    for key,value in menu.items():
+        print(f"{key}- {value}")
+    seleccion = seleccion_opciones(4)
+    if seleccion == 4:
+        return
+    else:
+        acciones[seleccion]()
 
 
 df = get_database("db_personas.db")
