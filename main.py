@@ -4,6 +4,7 @@ from data import *
 from numpy import mean
 
 def main_menu():
+    print()
     menu = {
         1 : "Un solo documento",
         2 : "Multiples documentos",
