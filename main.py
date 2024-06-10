@@ -65,8 +65,7 @@ columnas_seleccion_multiple = {
     3 : "Rol"
 }
 
-print("1- Un solo documento\n2- Multiples documentos")
-seleccion_numero_documentos = seleccion_opciones(2)
+
 
 '''if seleccion_numero_documentos == 1:
     print("Escoja un criterio por el que buscar:")
