@@ -1,6 +1,37 @@
 from entradas import *
 from data import *
 
+def main_menu():
+    menu = {
+        1 : "Un solo documento",
+        2 : "Multiples documentos",
+        3 : "Salir"
+    }
+    acciones = {
+        1 : seleccion_unica,
+        2 : seleccion_multiple,
+        3 : "lalala"
+    }
+    for key,value in menu.items():
+        print(f"{key}- {value}")
+    seleccion = seleccion_opciones(3)
+    acciones[seleccion]()
+    
+    
+def seleccion_unica():
+    columnas = {
+    1 : "rut",
+    2 : "nombre_completo"
+    }
+    print("uwu")
+
+
+def seleccion_multiple():
+    pass
+
+
+
+main_menu()
 
 df = get_database("db_personas.db")
 
