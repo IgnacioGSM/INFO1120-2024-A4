@@ -45,7 +45,7 @@ def seleccion_unica():
     subDF.reset_index(inplace=True)
     singular_data_to_contract(subDF,0)
 
-    print("Se ha generado el contrato, escriba 1 para volver al menú o escriba 2 para salir del programa")
+    print("\nSe ha generado el contrato\nescriba 1 para volver al menú\nescriba 2 para salir del programa")
     regreso = seleccion_opciones(2,"")
     if regreso == 1:
         main_menu()
@@ -85,7 +85,7 @@ def seleccion_multiple():
     for i in range(len(subDF)):
         singular_data_to_contract(subDF,i)
     
-    print("Se han generado los contratos, escriba 1 para volver al menú o escriba 2 para salir del programa")
+    print("\nSe han generado los contratos\nescriba 1 para volver al menú\nescriba 2 para salir del programa")
     regreso = seleccion_opciones(2,"")
     if regreso == 1:
         main_menu()
