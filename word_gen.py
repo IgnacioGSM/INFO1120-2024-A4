@@ -1,4 +1,3 @@
-import os
 from docx import Document
 from docx.shared import  Pt,Cm,Mm
 def example_contract(date:str, rol:str, address:str, rut:str, full_name:str, nationality:str, birth_date:str, profession:str, salary:str)->str:
